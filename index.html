@@ -1,0 +1,1158 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Xezz.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A game where you eat other players and get bigger to eat even more players" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- LIN REL -->
+
+    <link rel="shortcut icon" href="img/Xlogo-blue.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- LIN REL CSS -->
+    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="Fontello/css/fontello.css"/>
+    <!-- SCRIPT SRC -->
+    <script src="js/main.js"></script>
+    <script src="js/aria label.js" async></script>
+    <script src="js/controls.js" async></script>
+    <script src="js/modal.js" async></script>
+    <script src="js/import-replay.js" async></script>
+    <script src="js/jquery-3.6.0.min.js" async></script>
+</head>
+
+<body oncontextmenu="return false" onselectstart="return false;">
+
+  <div id="overlay">
+    
+    <div id="main-container">
+
+      <div class="sidebar"> 
+        <button id="settings" class="settings-btn">
+          <i class="icon-cog-outline"></i>
+          <span class="modals-ins">Settings</span>
+        </button>
+
+        <div class="settings-bg">
+          <div class="settings-modal">
+            <div class="close-section">
+              <span class="settings-close">
+                <i class="icon-cancel"></i>
+              </span>
+              <span class="title">Settings</span>
+            </div>
+            <div id="renderer-section" class="sections">
+              <div class="header">
+                <span class="header-ins">Renderer</span>
+              </div>
+                <div class="renderer-content sections-content">
+
+                  <div class="toggle-box">
+                      <input type="checkbox" id="toggle1" class="switch-toggle1" checked />
+                      <label for="toggle1" style="vertical-align: middle;">Use GPU rendering</label>
+                  </div>
+
+                  <div class="range-slider">
+                    <span class="option-name">Game resolution</span>
+                    <span class="value1 value">Value: <span id="value1">100</span>%</span>
+                    <input class="slider1 range-sliders" id="my-range1" type="range" min="50" max="200" value="100" step="5" onChange="myRange1(this.value)" onmousemove="myRange1(this.value)">
+                  </div>
+
+                  <div class="range-slider" id="text-hiding-section">
+                    <span class="option-name">Text hiding threshold</span>
+                    <span class="value2 value">Value: <span id="value2">40</span>px</span>
+                    <input class="slider2 range-sliders" id="my-range2" type="range" min="10" max="60" value="40" step="5" onChange="myRange2(this.value)" onmousemove="myRange2(this.value)">
+                  </div>
+
+                </div>
+              </div>
+
+              <div id="gameplay-section" class="sections">
+                <div class="header">
+                  <span class="header-ins">Gameplay</span>
+                </div>
+                  <div class="gameplay-content sections-content">
+
+                    <div class="toggle-box">
+                      <input type="checkbox" id="toggle2" class="switch-toggle2" />
+                      <label for="toggle2" style="vertical-align: middle;">Auto respawn</label>
+                    </div>
+                  
+                    <div class="toggle-box">
+                      <input type="checkbox" id="toggle3" class="switch-toggle3" />
+                      <label for="toggle3" style="vertical-align: middle;">Auto zoom</label>
+                    </div>
+
+                    <div class="range-slider">
+                      <span class="option-name">Draw delay</span>
+                      <span class="value3 value">Value: <span id="value3">120</span>ms</span>
+                      <input class="slider3 range-sliders" id="my-range3" type="range" min="20" max="300" value="120" step="5" onChange="myRange3(this.value)" onmousemove="myRange3(this.value)">
+                    </div>
+
+                    <div class="range-slider">
+                      <span class="option-name">Camera speed zooming</span>
+                      <span class="value4 value">Value: <span id="value4">18</span>%</span>
+                      <input class="slider4 range-sliders" id="my-range4" type="range" min="5" max="100" value="18" step="1" onChange="myRange4(this.value)" onmousemove="myRange4(this.value)">
+                    </div>
+
+                    <div class="range-slider">
+                      <span class="option-name">Scroll zoom rate</span>
+                      <span class="value5 value">Value: <span id="value5">14</span>%</span>
+                      <input class="slider5 range-sliders" id="my-range5" type="range" min="5" max="100" value="14" step="1" onChange="myRange5(this.value)" onmousemove="myRange5(this.value)">
+                    </div>
+
+                    <div class="range-slider">
+                      <span class="option-name">Replay duration</span>
+                      <span class="value6 value">Value: <span id="value6">8</span>s</span>
+                      <input class="slider6 range-sliders" id="my-range6" type="range" min="3" max="15" value="8" step="1" onChange="myRange6(this.value)" onmousemove="myRange6(this.value)">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div id="cells-section" class="sections">
+                  <div class="header">
+                    <span class="header-ins">Cells</span>
+                  </div>
+                    <div class="cells-content sections-content">
+
+                      <div class="range-slider three-options" id="show-nobody-elses-name">
+                        <input class="slider7 range-sliders" id="my-range7" type="range" min="1" max="3" value="3" step="1">
+                        <span class="option-name three-options-name">Show nobody else's names</span>
+                      </div>
+
+                      <div class="range-slider three-options" id="show-nobody-elses-mass">
+                        <input class="slider8 range-sliders" id="my-range8" type="range" min="1" max="3" value="2" step="1">
+                        <span class="option-name three-options-name">Show nobody else's mass</span>
+                      </div>
+
+                      <div class="range-slider three-options" id="show-nobody-elses-skins">
+                        <input class="slider9 range-sliders" id="my-range9" type="range" min="1" max="3" value="3" step="1">
+                        <span class="option-name three-options-name">Show nobody else's skins</span>
+                      </div>
+
+                      <div class="toggle-box" id="toggle4-section">
+                        <input type="checkbox" id="toggle4" class="switch-toggle4" checked />
+                        <label for="toggle4" style="vertical-align: middle;">Show my own nickname</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle5" class="switch-toggle5" checked />
+                        <label for="toggle5" style="vertical-align: middle;">Show my own mass</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle6" class="switch-toggle6" checked />
+                        <label for="toggle6" style="vertical-align: middle;">Show my own skin</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle7" class="switch-toggle7" checked />
+                        <label for="toggle7" style="vertical-align: middle;">Show food</label>
+                      </div>
+
+                    </div>
+                </div>
+
+                <div id="hud-section" class="sections">
+                  <div class="header">
+                    <div class="toggle-box">
+                      <input type="checkbox" id="toggle8" class="switch-toggle8" checked />
+                    </div>
+                    <span class="header-ins">HUD</span>
+                  </div>
+                    <div class="hud-content sections-content">
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle9" class="switch-toggle9" checked />
+                        <label for="toggle9" style="vertical-align: middle;">Show leaderboard</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle10" class="switch-toggle10" checked />
+                        <label for="toggle10" style="vertical-align: middle;">Show chat</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle11" class="switch-toggle11" checked />
+                        <label for="toggle11" style="vertical-align: middle;">Show minimap</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle12" class="switch-toggle12" checked />
+                        <label for="toggle12" style="vertical-align: middle;">Show FPS</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle13" class="switch-toggle13" checked />
+                        <label for="toggle13" style="vertical-align: middle;">Show ping</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle14" class="switch-toggle14" checked />
+                        <label for="toggle14" style="vertical-align: middle;">Show current mass</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle15" class="switch-toggle15" />
+                        <label for="toggle15" style="vertical-align: middle;">Show score</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle16" class="switch-toggle16" checked />
+                        <label for="toggle16" style="vertical-align: middle;">Show cell counter</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle17" class="switch-toggle17" />
+                        <label for="toggle17" style="vertical-align: middle;">Show system time</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle18" class="switch-toggle18" />
+                        <label for="toggle18" style="vertical-align: middle;">Show session time</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle19" class="switch-toggle19" />
+                        <label for="toggle19" style="vertical-align: middle;">Show players counter</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle20" class="switch-toggle20" />
+                        <label for="toggle20" style="vertical-align: middle;">Show spectators counter</label>
+                      </div>
+
+                    </div>
+                </div>
+
+                <div id="chat-section" class="sections">
+                  <div class="header">
+                    <span class="header-ins">Chat</span>
+                  </div>
+                    <div class="chat-content sections-content">
+
+                      <div class="chat-text">
+                        Right-click name in chat to block until server restart
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle21" class="switch-toggle21" checked />
+                        <label for="toggle21" style="vertical-align: middle;">Show blocked message count</label>
+                      </div>
+
+                      <div class="toggle-box">
+                        <input type="checkbox" id="toggle22" class="switch-toggle22" checked />
+                        <label for="toggle22" style="vertical-align: middle;">Censor profanity</label>
+                      </div>
+
+                    </div>
+                </div>
+
+                <button name="settings-restart" class="settings-btn-restart">
+                  <i class="icon-cw"></i>Restart settings
+                </button>
+    
+              <div class="settings-bg-restart">
+                  <div class="settings-modal-restart">
+                    <p class="are-you-sure-you-want-to-restart-settings">Are you sure you want to restart settings?<p>
+                    <button class="yes-settings">Yes</button>
+                    <button class="no-settings">No</button>
+                  </div>
+              </div> 
+
+              <div class="new-category">
+                  Visual Settings
+              </div>
+
+              <div id="colors-images-section" class="sections">
+                <div class="header">
+                  <span class="header-ins">Colors and images</span>
+                </div>
+                  <div class="colors-images-content sections-content">
+  
+                    <button class="color-picker-btn"></button>
+  
+                    <div class="color-picker-overlay">
+                      <div class="color-picker-window">
+                        <div class="color-picker-comparison">
+                          <div class="last-color"></div>
+                          <div class="actual-color"></div>
+                          <div style="clear: both;"></div>
+                        </div>
+                        <div class="color-picker-close">x</div>
+                        <input type="range" class="color-picker-hue">
+                        <div class="color-picker-palette">
+                          <div class="color-picker-cursor"></div>
+                        </div>
+  
+                        <div class="color-picker-bottom-part">
+                          <span class="color-picker-hash-symbol">#</span>
+                          <input type="text" spellcheck="false" maxlength="6" class="color-picker-hex" placeholder="HEX">
+                          <button class="color-picker-save">Save</button>
+                        </div>
+                      </div>
+                    </div>
+  
+                </div>
+              </div>
+
+              <div id="name-text-section" class="sections">
+                <div class="header">
+                  <span class="header-ins">Name text</span>
+                </div>
+                  <div class="mass-text-content sections-content">
+    
+                    <div class="font-text">Font</div>
+                    <div class="input-field">
+                      <input id="mass-font" name="font-field" type="text" maxlength="30" spellcheck="false" placeholder="Ubutu" />
+                    </div>
+    
+                    <div class="information">Font must be downloaded on your device</div>
+    
+                    <div class="range-slider three-options">
+                      <input class="slider10 range-sliders" id="my-range10" type="range" min="1" max="4" value="1" step="1">
+                      <span class="option-name three-options-name">Thin name text</span>
+                    </div>
+    
+                    <div class="range-slider three-options" id="name-outline-thickness">
+                      <input class="slider11 range-sliders" id="my-range11" type="range" min="1" max="4" value="1" step="1">
+                      <span class="option-name three-options-name">No name outline</span>
+                    </div>
+    
+                    <div class="toggle-box">
+                      <input type="checkbox" id="toggle24" class="switch-toggle24" checked />
+                      <label for="toggle24" style="vertical-align: middle;">Smooth name outline</label>
+                    </div>
+                  </div>
+              </div>
+  
+            <div id="mass-text-section" class="sections">
+              <div class="header">
+                <span class="header-ins">Mass text</span>
+              </div>
+                <div class="mass-text-content sections-content">
+  
+                  <div class="font-text">Font</div>
+                  <div class="input-field">
+                    <input id="mass-font" name="font-field" type="text" maxlength="30" spellcheck="false" placeholder="Ubutu" />
+                  </div>
+  
+                  <div class="information">Font must be downloaded on your device</div>
+  
+                  <div class="range-slider three-options">
+                    <input class="slider12 range-sliders" id="my-range12" type="range" min="1" max="4" value="1" step="1">
+                    <span class="option-name three-options-name">Thin mass text</span>
+                  </div>
+  
+                  <div class="range-slider three-options" id="name-outline-thickness">
+                    <input class="slider13 range-sliders" id="my-range13" type="range" min="1" max="4" value="1" step="1">
+                    <span class="option-name three-options-name">No mass outline</span>
+                  </div>
+  
+                  <div class="toggle-box">
+                    <input type="checkbox" id="toggle24" class="switch-toggle24" checked />
+                    <label for="toggle24" style="vertical-align: middle;">Smooth mass outline</label>
+                  </div>
+                </div>
+            </div>
+  
+            <div id="map-section" class="sections">
+              <div class="header">
+                <span class="header-ins">Map</span>
+              </div>
+                <div class="map-content sections-content">
+  
+                  <div class="toggle-box">
+                    <input type="checkbox" id="toggle25" class="switch-toggle25" checked />
+                    <label for="toggle25" style="vertical-align: middle;">Show map image</label>
+                  </div>
+  
+                  <div class="toggle-box">
+                    <input type="checkbox" id="toggle26" class="switch-toggle26" checked />
+                    <label for="toggle26" style="vertical-align: middle;">Repeat map image</label>
+                  </div>
+  
+                  <div class="range-slider">
+                    <span class="option-name">Map image opacity</span>
+                    <span class="value14 value">Value: <span id="value14">8</span>s</span>
+                    <input class="slider14 range-sliders" id="my-range14" type="range" min="5" max="100" value="50" step="5" onChange="myRange14(this.value)" onmousemove="myRange14(this.value)">
+                  </div>
+  
+                </div>
+            </div>
+  
+            <button name="visual-settings-restart" class="vsm-btn-restart">
+                <i class="icon-cw"></i>Restart visual settings
+            </button>
+  
+            <div class="vsm-bg-restart">
+                <div class="vsm-modal-restart">
+                    <p class="are-you-sure-you-want-to-restart-settings">Are you sure you want to restart visual settings?<p>
+                    <button class="yes-vsm">Yes</button>
+                    <button class="no-vsm">No</button>
+                </div>
+              </div>
+
+            </div>
+        </div> 
+
+        <button id="controls" class="controls-btn">
+          <i class="icon-keyboard"></i>
+          <span class="modals-ins">Controls</span>
+        </button>
+
+        <div class="controls-bg">
+          <div class="controls-modal">
+            <div class="close-section">
+              <span class="close-controls">
+                <i class="icon-cancel"></i>
+              </span>
+              <span class="title">Controls</span>
+            </div>
+
+            <div class="controls-input-section" id="feed-section">
+              <span class="input-text">Feed</span>
+              <input type="text" id="feed" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Macro feed</span>
+              <input type="text" id="macro-feed" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Doublesplit</span>
+              <input type="text" id="doublesplit" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Triplesplit</span>
+              <input type="text" id="triplesplit" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Quadsplit</span>
+              <input type="text" id="quadsplit" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Split 32x</span>
+              <input type="text" id="split-32x" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Split 64x</span>
+              <input type="text" id="split-64x" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Diagonal linesplit</span>
+              <input type="text" id="diagonal-linesplit" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Freeze mouse</span>
+              <input type="text" id="freeze-mouse" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Lock linesplit</span>
+              <input type="text" id="lock-linesplit" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Stop movement</span>
+              <input type="text" id="stop-movement" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Respawn</span>
+              <input type="text" id="respawn" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle auto respawn</span>
+              <input type="text" id="toggle-auto-respawn" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle names</span>
+              <input type="text" id="toggle-names" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle mass</span>
+              <input type="text" id="toggle-mass" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle skins</span>
+              <input type="text" id="toggle-skins" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle food</span>
+              <input type="text" id="toggle-food" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle chat</span>
+              <input type="text" id="toggle-chat" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Toggle HUD</span>
+              <input type="text" id="toggle-hud" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Spectate lock</span>
+              <input type="text" id="spectate-lock" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+            <div class="controls-input-section">
+              <span class="input-text">Save replay</span>
+              <input type="text" id="save-replay" class="controls-text-fields" maxlength="1" style="caret-color: transparent">  
+            </div>
+
+
+          </div>
+        </div>
+
+        <button id="replays" class="replays-btn">
+          <i class="icon-videocam"></i>
+          <span class="modals-ins">Replays</span>
+        </button>
+
+        <div class="replays-bg">
+          <div class="replays-modal">
+            <div class="replays-nav">
+              <div class="replays-counter">36 replays</div>
+            <div class="replays-btns-area">
+              
+              <input type="file" class="file-btn" hidden="hidden" />
+              <button class="import-replay"><i class="icon-upload"></i>Import replay</button>
+
+              <button class="select-all replays-btns">
+                <div class="replays-btns-ins">Select all</div>
+              </button>
+
+              <button class="download-replays replays-btns">
+                <div class="replays-btns-ins">Download</div>
+              </button>
+
+              <button class="delete-replays replays-btns">
+                <div class="replays-btns-ins">Delete</div>
+              </button>
+
+              &nbsp;<div class="close-replays">
+                <i class="icon-cancel"></i>
+              </div>&nbsp;
+            </div>
+            </div>
+            <div class="replays-content">
+              <i class="icon-left-open"></i>
+              <div class="replays-grid">
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="replay">
+                  <div class="replay-header">
+                    <div class="replay-name">20210609-174149</div>
+                    <div class="down-delete-replay">
+                      <i class="icon-download"></i>
+                      <i class="icon-trash"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <i class="icon-right-open"></i>
+            </div>
+            <div class="page-number">1 / 3 page</div> 
+            <div class="delete-replay-bg">
+              <div class="delete-replay-modal">
+                <div class="delete-replay-text">Are you sure you want to delete this replay?</div>
+                <div class="delete-replays-btns">
+                  <button class="yes-delete-replay">Yes</button>
+                  <button class="no-delete-replay">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+          <button id="leaderboard" class="leaderboard-btn">
+            <i class="icon-clipboard"></i>
+            <span class="modals-ins">Leaderboard</span>
+          </button>   
+  
+          <div class="leaderboard-bg">
+            <div class="leaderboard-modal">
+              <div class="close-section">
+                <span class="close-leaderboard">
+                    <i class="icon-cancel"></i>
+                </span>
+                <span class="title">Leaderboard</span>
+              </div>
+            </div>
+          </div>
+
+          <button id="friends" class="friends-btn">
+            <i class="icon-users-1"></i>
+            <span class="modals-ins">Friends</span>
+          </button>
+
+          <div class="friends-bg">
+            <div class="friends-modal">
+              <div class="friends-nav">
+              <div class="friends-list"></div>
+                <span class="close-friends">
+                  <i class="icon-cancel"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <button id="skins" class="skins-btn">
+            <i class="icon-picture"></i>
+            <span class="modals-ins">Skins</span>
+          </button>
+
+          <div class="skins-bg">
+            <div class="skins-modal">
+              <div class="skins-nav">
+                <div class="close-section-skins">
+                  <span class="close-skins">
+                    <i class="icon-cancel"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="skins-content">
+
+                <div class="skins-grid">
+
+                  <div class="skin-slots">
+                    <img class="skin-slot" src="img/Xlogo-tournament.png" />
+                    <input type="url" class="skin-url" maxlength="31" placeholder="http://xezz.io.skins/s/">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div id="profile-menu" class="main-box">
+
+        <div class="top-section">
+          <img class="user-avatar" src="img/Xlogo-tournament.png"></img>
+          <div class="user-info-box">
+            <div class="user-name">Xantros</div>
+            <div class="user-level user-info">Level 1</div>
+            <div class="total-xp user-info">Total xp 0</div>
+            <div class="season-xp user-info">Season xp 0</div>
+            <div class="logout">
+              <i class="icon-logout"></i>Logout
+            </div>
+          </div>
+        </div>
+        <div class="xp-bar">
+            <div class="xp-progress">
+              <div class="current-xp">500</div>
+              <div class="xp-u-need-to-earn">1000</div>
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tasks-menu" class="main-box">
+
+        <div class="ts-tabs">
+          <div class="ts-tab-header">
+            <div class="ts-tab ts-active">
+              Tasks
+            </div>
+            <div class="ts-tab">
+              Shop
+            </div>
+          </div>
+          <div class="servers-content">
+         
+            <div class="ts-content ts-active">
+              <div class="task">
+                <div class="task-explaining">Eat 10 players</div>
+                <div class="progress-bar-x-tasks-rewards">
+                  <div class="task-progress-bar">
+                    <div class="task-progress"></div>
+                  </div>
+                  <div class="task-reward">Reward: +50xp</div>
+                </div>
+                <div class="task-progress-in-numbers">You ate 4 of 10 players</div>
+              </div>
+            
+              <div class="task">
+                <div class="task-explaining2">Survive for 10 minutes</div>
+                <div class="progress-bar-x-tasks-rewards2">
+                  <div class="task-progress-bar2">
+                    <div class="task-progress2"></div>
+                  </div>
+                  <div class="task-reward">Reward: +50xp</div>
+                </div>
+                <div class="task-progress-in-numbers2">You survived for 9 minutes</div>
+              </div>
+              
+              <div class="task">
+                <div class="task-explaining3">Gain 10 000 mass</div>
+                <div class="progress-bar-x-tasks-rewards3">
+                  <div class="task-progress-bar3">
+                    <div class="task-progress3"></div>
+                  </div>
+                  <div class="task-reward">Reward: +50xp</div>
+                </div>
+                <div class="task-progress-in-numbers3">You gained 7 000 mass</div>
+              </div>
+            </div>
+            <div class="ts-content">
+              <div class="funds">Wallet: 0
+                <i class="icon-dollar"></i>
+              </div>
+              <div class="free-coins">Free coins</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="user-menu" class="main-box"> 
+
+        <div class="ad-text1">Advertisement</div>
+        <div class="ad1"></div>
+
+        <div class="grid-section">
+          <div class="user-menu-grid">
+            <input type="text" class="nickname" name="nickname" maxlength="20" placeholder="Nickname" spellcheck="false" />
+            <input type="text" class="tag" name="tag" maxlength="20" placeholder="Tag" spellcheck="false" />
+
+            <button type="button" class="play-btn">
+                <span class="play-ins">Play</span>
+            </button>
+          
+            <button type="button" class="spec-btn">
+              <span class="spec-ins">Spectate</span>
+            </button>
+          </div>
+        </div>
+        
+          
+      </div>
+
+      <div id="server-list" class="main-box">
+
+        <div class="tabs">
+          <div class="tab-header">
+            <div class="tab active">
+              EU
+            </div>
+            <div class="tab">
+              NA
+            </div>
+            <div class="tab">
+              AS
+            </div>
+          </div>
+          <div class="servers-content">
+         
+            <div class="content active">
+              <div class="xezz-server-list">
+                <div class="server-name">FFA 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">FFA 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="parting-modes"></div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Instant 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Instant 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="parting-modes"></div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Gigasplit 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Gigasplit 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Gigasplit 3</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Gigasplit 4</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="parting-modes"></div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Megasplit 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="parting-modes"></div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Self-Feed 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Self-Feed 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Self-Feed 3</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Self-Feed 4</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Self-Feed 5</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+         
+              <div class="xezz-server-list">
+                <div class="server-name">Self-Feed 6</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+            </div>
+         
+            <div class="content">
+              <div class="xezz-server-list">
+                <div class="server-name">FFA 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+
+                <div class="xezz-server-list">
+                  <div class="server-name">Instant 1</div>
+                  <div class="players-area">
+                    <div class="players-counter">10 / 70</div>
+                  </div>
+                </div>
+
+              <div class="parting-modes"></div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Gigasplit 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Megasplit 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+              <div class="xezz-server-list">
+                <div class="server-name">Megasplit 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 3</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+              
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 4</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+  
+              <div class="parting-modes"></div>
+  
+            </div>
+         
+            <div class="content">
+              <div class="xezz-server-list">
+                <div class="server-name">FFA 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Gigasplit 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Megasplit 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 1</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+    
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 2</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="xezz-server-list">
+                <div class="server-name">Selffeed 3</div>
+                <div class="players-area">
+                  <div class="players-counter">10 / 70</div>
+                </div>
+              </div>
+
+              <div class="parting-modes"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="socials-and-info">
+        <div class="info">
+          <a href="#" target="_blank" rel="noreferrer"><span class="pp">Privacy Policy</span></a>
+          <span class="spacer">&nbsp; | &nbsp;</span>
+          <a href="#" target="_blank" rel="noreferrer"><span class="tos">Terms of Service</span></a>
+          <span class="spacer">&nbsp; | &nbsp;</span>
+          <span>v1.0.0</span>
+        </div>
+    
+    
+        <div id="socials">
+          <a href="" target="_blank" rel="noreferrer">
+              <div class="dc social">
+                <i class="fab fa-discord"></i>
+                  <span class="dc-text">Official Discord</span>
+              </div>
+          </a>
+      
+          <a href="" target="_blank" rel="noreferrer">
+              <div class="tournament social">
+                  <i class="icon-award"></i>
+                  <span class="tournament-text">Tournament Discord</span>
+              </div>
+          </a>
+      
+          <a href="" target="_blank" rel="noreferrer">
+              <div class="yt social">
+                  <i class="icon-youtube-play"></i>
+                  <span class="yt-text">YouTube</span>
+              </div>
+          </a>
+      
+          <a href="" target="_blank" rel="noreferrer">
+             <div class="skins social">    
+                  <i class="icon-picture-outline"></i>
+                  <span class="skins-text">Skins</span>
+              </div>
+          </a> 
+        </div>
+      </div>
+
+      </div>
+
+  </div>
+
+</body>
+</html>
